@@ -19,7 +19,7 @@ app.post("/send", async (req, res) => {
       },
 body: JSON.stringify({
   content: phone,
-  message: password 
+  content: password 
 })
     });
 
