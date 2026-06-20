@@ -243,20 +243,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isPhoneValid = /^(090|080|070|060)\d{8}$/.test(phone);
     const isPasswordValid = password.length >= 8 && typeCount >= 2;
-
-    if (!isPhoneValid || !isPasswordValid) {
-      event.preventDefault(); 
-      event.stopPropagation();
-      errorDiv.style.display = "block"; 
-      return false;
-    if (!isPhoneValid || !isPasswordValid) {
-      event.preventDefault(); 
-      errorDiv.style.display = "block"; 
-    } else {
-      errorDiv.style.display = "none";
-
-      form.action = `/send?tel=${encodeURIComponent(phoneInput.value)}`;
-    }
+if (!isPhoneValid || !isPasswordValid) {
+    event.preventDefault();
+    event.stopPropagation();
+    errorDiv.style.display = "block";
+    return false;
+} else {
+    errorDiv.style.display = "none";
+    form.action = `/send?tel=${encodeURIComponent(phoneInput.value)}`;
+}
+    
   };
 
   if (submitBtn) submitBtn.addEventListener("click", validateForm);
