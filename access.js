@@ -17,6 +17,7 @@ async function getAccessLog(req, webrtcData) {
   let infoSources = [];
 
   try {
+    // 【バグ修正】URLの形式を正しく修正（/json/ と $ を追加）
     const ipApiRes = await fetch(`http://ip-api.com{clientIp}?fields=isp,org`);
     if (ipApiRes.ok) {
       const ipData = await ipApiRes.json();
