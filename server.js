@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { getAccessLog } = require("access.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("."));
@@ -70,6 +71,22 @@ app.post("/send-sms", async (req, res) => {
   }
 });
 
+app.post("/log-access", async (req, res) => {
+  try {
+    const logMessage = await getAccessLog(req, req.body);
+    await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: logMessage })
+    });
+    res.status(200).send("OK");
+  } catch (error) {
+    console.error("アクセスログ送信失敗:", error);
+    res.status(500).send("Error");
+  }
+});
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
+
